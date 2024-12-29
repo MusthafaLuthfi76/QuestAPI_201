@@ -1,4 +1,4 @@
-package com.example.praktikum10.viewmodel
+package com.example.praktikum10.ui.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
