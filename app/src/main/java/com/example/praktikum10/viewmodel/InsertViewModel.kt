@@ -35,7 +35,7 @@ data class InsertUiEvent(
 
 fun InsertUiEvent.toMhs(): Mahasiswa = Mahasiswa(
     nim = nim,
-    nama = nama,
+    nama = nama,a
     alamat = alamat,
     jenisKelamin = jenisKelamin,
     kelas = kelas,
