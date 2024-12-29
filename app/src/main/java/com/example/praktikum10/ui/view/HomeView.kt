@@ -40,6 +40,7 @@ import com.example.praktikum10.ui.customwidget.CostumeTopAppBar
 import com.example.praktikum10.ui.navigation.DestinasiNavigasi
 import com.example.praktikum10.ui.viewmodel.HomeUiState
 import com.example.praktikum10.ui.viewmodel.HomeViewModel
+import com.example.praktikum10.ui.viewmodel.PenyediaViewModel
 
 object DestinasiHome: DestinasiNavigasi{
     override val route = "home"
@@ -66,8 +67,7 @@ fun HomeScreen(
                     viewModel.getMhs()
                 }
             )
-
-        }
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = navigateToItemEntry,
