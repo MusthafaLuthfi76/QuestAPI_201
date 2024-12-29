@@ -1,9 +1,12 @@
 package com.example.praktikum10.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import coil.network.HttpException
 import com.example.praktikum10.model.Mahasiswa
 import com.example.praktikum10.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
 import okio.IOException
 
 
@@ -16,7 +19,7 @@ sealed class HomeUiState{
 }
 
 class HomeViewModel(private val mhs: MahasiswaRepository): ViewModel(){
-    var mhsUiState: HomeUiState by _root_ide_package_.androidx.compose.runtime.mutableStateOf(HomeUiState.Loading)
+    var mhsUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
 
     init {
