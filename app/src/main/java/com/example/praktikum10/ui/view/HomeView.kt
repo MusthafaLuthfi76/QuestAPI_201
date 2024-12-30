@@ -1,6 +1,7 @@
 package com.example.praktikum10.ui.view
 
-import android.R
+import com.example.praktikum10.R
+import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,11 +15,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -28,11 +31,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.praktikum10.model.Mahasiswa
@@ -142,7 +147,7 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Image(
-            painter = painterResource(id = R.drawable.ic_connection_error), contentDescription = ""
+            painter = painterResource(id = R.drawable.loading_img), contentDescription = ""
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp)
         )
@@ -156,26 +161,23 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier){
 fun MhsLayout(
     mahasiswa: List<Mahasiswa>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Mahasiswa)-> Unit,
+    onDetailClick: (Mahasiswa) -> Unit,
     onDeleteClick: (Mahasiswa) -> Unit = {}
-){
-    LazyColumn (
+) {
+    LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
-    ){
-        items(mahasiswa){
-            kontak ->
+    ) {
+        items(mahasiswa) { kontak ->
             MhsCard(
                 mahasiswa = kontak,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable{onDetailClick(kontak)},
-                onDeleteClick = {
-                    onDeleteClick(kontak)
-                }
-
-            )
+                    .clickable { onDetailClick(kontak) }
+            ) {
+                onDeleteClick(kontak)
+            }
         }
     }
 }
